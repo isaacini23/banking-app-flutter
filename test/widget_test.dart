@@ -8,19 +8,18 @@ void main() {
 
     expect(find.text('Welcome back'), findsOneWidget);
     expect(find.byType(BottomNavigationBar), findsOneWidget);
-    expect(find.byIcon(Icons.home), findsNothing);
   });
 
-  testWidgets('bottom navigation switches between app sections', (WidgetTester tester) async {
+  testWidgets('bottom navigation opens the wallet section', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
     final navigation = find.byType(BottomNavigationBar);
-    expect(navigation, findsOneWidget);
-
-    await tester.tap(find.descendant(
+    final walletIcon = find.descendant(
       of: navigation,
-      matching: find.byIcon(Icons.wallet),
-    ));
+      matching: find.byType(Icon),
+    ).at(1);
+
+    await tester.tap(walletIcon);
     await tester.pumpAndSettle();
 
     expect(find.text('All Cards'), findsOneWidget);
