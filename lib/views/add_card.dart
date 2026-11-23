@@ -77,7 +77,7 @@ class _AddCardState extends State<AddCard> {
   }
 
   String? _validateExpiry(String? value) {
-    final match = RegExp(r'^(0[1-9]|1[0-2])/(\d{2})).firstMatch(value?.trim() ?? '');
+    final match = RegExp(r'^(0[1-9]|1[0-2])/(\d{2})$').firstMatch(value?.trim() ?? '');
     if (match == null) return 'Use MM/YY';
     final month = int.parse(match.group(1)!);
     final year = 2000 + int.parse(match.group(2)!);
@@ -89,7 +89,7 @@ class _AddCardState extends State<AddCard> {
   }
 
   String? _validateCvv(String? value) {
-    if (!RegExp(r'^\d{3,4}).hasMatch(value?.trim() ?? '')) {
+    if (!RegExp(r'^\d{3,4}$').hasMatch(value?.trim() ?? '')) {
       return 'Enter a 3 or 4 digit security code';
     }
     return null;
@@ -286,7 +286,7 @@ class _AddCardState extends State<AddCard> {
   }
 
   String? _validateCvv(String? value) {
-    if (!RegExp(r'^\\d{3,4}$').hasMatch(value?.trim() ?? '')) {
+    if (!RegExp(r'^\d{3,4}$').hasMatch(value?.trim() ?? '')) {
       return 'Enter a 3 or 4 digit security code';
     }
     return null;
@@ -668,7 +668,7 @@ class _AddCardState extends State<AddCard> {
   }
 
   String? _validateCvv(String? value) {
-    if (!RegExp(r'^\d{3,4}).hasMatch(value?.trim() ?? '')) {
+    if (!RegExp(r'^\d{3,4}$').hasMatch(value?.trim() ?? '')) {
       return 'Enter a 3 or 4 digit security code';
     }
     return null;
